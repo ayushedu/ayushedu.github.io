@@ -78,7 +78,7 @@ social:
     share: true
 
   - name: Stackoverflow
-    icon: stackoverflow
+    icon: stack-overflow
     username: StackOverflow
     url: https://stackoverflow.com/users/story/6065591
     desc: Friend me on Facebook
