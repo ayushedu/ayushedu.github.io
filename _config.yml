@@ -92,7 +92,7 @@ social:
     share: false
 
   - name: LinkedIn
-    icon: LinkedIn
+    icon: linkedin
     username: LinkedIn
     url: https://www.linkedin.com/in/ayushv/
     desc: Connect with me on LinkedIn
