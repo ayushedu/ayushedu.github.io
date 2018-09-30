@@ -57,12 +57,9 @@ INSTALLED_APPS = [
 * Update ```demo/urls.py```
 
 ```python
-from django.conf.urls
-import url
-from django.contrib
-import admin
-from django.urls
-import include
+from django.conf.urls import url
+from django.contrib import admin
+from django.urls import include
 urlpatterns = [
   url(r '^admin/', admin.site.urls),
   url('^starter/', include('starter.urls')),
@@ -72,11 +69,9 @@ urlpatterns = [
 * Create new file ```starter/urls.py```
 
 ```python
-from django.urls
-import path
-from.import views
-from django.urls
-import include
+from django.urls import path
+from .import views
+from django.urls import include
 urlpatterns = [
   path('', views.index, name = 'index'),
 ]
@@ -168,14 +163,12 @@ This file will be exending the base HTML.
 Create view for starter app in ```starter/view.py```
 
 ```python
-from __future__
-import unicode_literals
-from django.shortcuts
-import render
+from __future__ import unicode_literals
+from django.shortcuts import render
 
 # Create your views here.
 def index(request): #Doing nothing here
-return render(request, "starter/index.html", context = {}, )
+    return render(request, "starter/index.html", context = {}, )
 ```
 
 ## Running the application
