@@ -42,14 +42,14 @@ $ django-admin startapp starter
 
 ```
 INSTALLED_APPS = [
-'django.contrib.admin',
-'django.contrib.auth',
-'django.contrib.contenttypes',
-'django.contrib.sessions',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-'demo',
-'starter',
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+  'demo',
+  'starter',
 ]
 ```
 
@@ -57,23 +57,28 @@ INSTALLED_APPS = [
 * Update ```demo/urls.py```
 
 ```python
-from django.conf.urls import url
-from django.contrib import admin
-from django.urls import include
+from django.conf.urls
+import url
+from django.contrib
+import admin
+from django.urls
+import include
 urlpatterns = [
-url(r'^admin/', admin.site.urls),
-url('^starter/', include('starter.urls')),
+  url(r '^admin/', admin.site.urls),
+  url('^starter/', include('starter.urls')),
 ]
 ```
 
 * Create new file ```starter/urls.py```
 
 ```python
-from django.urls import path
-from . import views
-from django.urls import include
+from django.urls
+import path
+from.import views
+from django.urls
+import include
 urlpatterns = [
-path('', views.index, name='index'),
+  path('', views.index, name = 'index'),
 ]
 ```
 
@@ -96,44 +101,48 @@ $ mkdir -p starter/templates/starter
 {% block head %}
 {% block title %}My Site{% endblock %}
 {% endblock %}
-
 {% block extrahead %}{% endblock %}
-
 {% block onload %}
 {% endblock %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark"><a class="navbar-brand mb-0 h1">
-<img class="d-inline-block align-top" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="30" height="30" />
-My Site</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-
-</button>
-<div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-center">
-<ul class="navbar-nav mr-auto">
-    <li class="nav-item dropdown"><a id="navbarDropdown1" class="nav-link dropdown-toggle" role="button" href="#">
-Profile
-</a>
-<div class="dropdown-menu"><a class="dropdown-item" href="#">Personal Information</a>
-<a class="dropdown-item" href="#">Address</a></div></li>
-    <li class="nav-item dropdown"><a id="navbarDropdown2" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Financial
-</a>
-<div class="dropdown-menu"><a class="dropdown-item" href="#">Income</a>
-<a class="dropdown-item" href="#">Online Payment</a></div></li>
-    <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Admin
-</a>
-<div class="dropdown-menu">
-
-<a class="dropdown-item" href="#">Messages</a>
-<a class="dropdown-item" href="#">Events</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="#">Settings</a>
-
-</div></li>
-</ul>
-</div>
-<ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap"><a class="nav-link" href="#">Sign out</a></li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <a class="navbar-brand mb-0 h1">
+   <img class="d-inline-block align-top" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="30" height="30" />
+   My Site</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   </button>
+   <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item dropdown">
+            <a id="navbarDropdown1" class="nav-link dropdown-toggle" role="button" href="#">
+            Profile
+            </a>
+            <div class="dropdown-menu"><a class="dropdown-item" href="#">Personal Information</a>
+               <a class="dropdown-item" href="#">Address</a>
+            </div>
+         </li>
+         <li class="nav-item dropdown">
+            <a id="navbarDropdown2" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Financial
+            </a>
+            <div class="dropdown-menu"><a class="dropdown-item" href="#">Income</a>
+               <a class="dropdown-item" href="#">Online Payment</a>
+            </div>
+         </li>
+         <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+            </a>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">Messages</a>
+               <a class="dropdown-item" href="#">Events</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#">Settings</a>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap"><a class="nav-link" href="#">Sign out</a></li>
+   </ul>
 </nav>
 <div>{% block content %}{% endblock %}</div>
 {% block js %}
@@ -159,13 +168,14 @@ This file will be exending the base HTML.
 Create view for starter app in ```starter/view.py```
 
 ```python
-from __future__ import unicode_literals
-from django.shortcuts import render
+from __future__
+import unicode_literals
+from django.shortcuts
+import render
 
 # Create your views here.
-def index(request):
-# Doing nothing here
-return render(request, "starter/index.html", context={},)
+def index(request): #Doing nothing here
+return render(request, "starter/index.html", context = {}, )
 ```
 
 ## Running the application
