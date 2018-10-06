@@ -1,12 +1,14 @@
 ---
 layout: post
 title:  "Apache Spark Introduction"
-date:   2018-05-04
+date:   2018-04-18 08:43:59
 author: Ayush Vatsyayan
-categories: "Apache Spark" "BigData"
-tags:	spark bigdata
+categories: Apache-Spark
+tags:	    spark
 cover:  "/assets/instacode.png"
 ---
+
+
 In this first Spark article, I'll try to answer the question "What is Spark?" and give you an in-depth overview of what makes it special. I'll outline the main features, including some of the advanced functionality. I'll also show you some of the main building blocks.
 
 # What is Spark?
