@@ -5,7 +5,7 @@ date:   2018-06-04 08:43:59
 author: Ayush Vatsyayan
 categories: Apache-Spark
 tags:	    spark
-cover:  "/assets/instacode.png"
+cover:  "/assets/architecture-business-cabinet-325229.jpg"
 ---
 
 Now that you know [What is Spark](https://ayushedu.github.io/apache-spark/2018/04/18/Apache-Spark-Introduction.html), we'll see how to set up and test a Spark development environment on Windows, Linux (Ubuntu), and macOS X — whatever common operating system you are using, this article should give you what you need to be able to start developing Spark applications.
