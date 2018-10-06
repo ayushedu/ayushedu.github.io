@@ -59,7 +59,7 @@ scala> sc.version
 ```
 
 ## Terminal Recording
-<a href="https://asciinema.org/a/204919" target="_blank"><img src="https://asciinema.org/a/204919.png" /></a>
+<a href="https://asciinema.org/a/204919?speed=2.4" target="_blank"><img src="https://asciinema.org/a/204919.png" /></a>
 
 # Summary
 You now have a Spark development environment up and running on your computer.
