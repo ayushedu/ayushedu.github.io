@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spark Tutorial Part 4: Getting Started with Spark DataFrames"
+title:  "Spark Tutorial Part 4: Getting Started with DataFrames"
 date:   2018-10-16 08:22:00
 author: Ayush Vatsyayan
 categories: Apache-Spark
@@ -16,20 +16,32 @@ Objective: To understand [Spark DataFrames](https://spark.apache.org/docs/latest
 # Overview
 [Apache Spark](https://spark.apache.org/) is one of the most widely used open source processing engines for big data, with rich language-integrated APIs and a wide range of libraries. It’s much easier to program in Spark due to its rich APIs in [Python](https://www.python.org), [Java](https://docs.oracle.com/en/java/), [Scala](https://www.scala-lang.org), and [R](https://www.r-project.org).
 
+![](/assets/spark_architecture.jpg){:class="img-responsive"}
+
 This richness is gained from Apache Spark’s SQL module that integrates the relational processing with Spark's functional programming API.  The Spark SQL lets Spark programmers leverage the benefits of relational processing (e.g. declarative queries and optimized storage), and lets SQL users call complex analytics libraries in Spark (e.g. machine learning). 
 
-Compared to [RDD](https://spark.apache.org/docs/latest/rdd-programming-guide.html#resilient-distributed-datasets-rdds), [Spark SQL](https://spark.apache.org/docs/latest/sql-programming-guide.html#sql) makes two main additions. First, it offers much tighter integration between relational and procedural processing, through a declarative DataFrame API that integrates with procedural Spark code. Second, it includes a highly extensible optimizer, Catalyst, built using features of the Scala programming language, that makes it easy to add composable rules, control code generation, and define extension points. 
+Compared to [RDD](https://spark.apache.org/docs/latest/rdd-programming-guide.html#resilient-distributed-datasets-rdds), [Spark SQL](https://spark.apache.org/docs/latest/sql-programming-guide.html#sql) makes two main additions:
+1. Offers much tighter integration between relational and procedural processing, through a declarative DataFrame API that integrates with procedural Spark code. 
+2. Includes a highly extensible optimizer, Catalyst, built using features of the Scala programming language, that makes it easy to add composable rules, control code generation, and define extension points. 
 
 In summary Spark SQL is an evolution of both SQL-on-Spark and of Spark itself, offering richer APIs and optimizations while keeping the benefits of the Spark programming model.
 
 # Datasets and DataFrames
-A DataFrame is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations. It is a distributed collection of data, like RDD, but organized into named columns (i.e., a collection of structured records). This provides Spark with more information about the structure of both the data and the computation. Such information can be used for extra optimizations.
+A **DataFrame** is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations. It is a distributed collection of data, like RDD, but organized into named columns (i.e., a collection of structured records). 
 
-Unlike the RDD API, which is general and has no information about the data structure, the [DataFrame API](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame) can perform relational operations on RDDs and external data sources, and enables rich relational/ functional integration within Spark applications. DataFrames are now the main data representation in Spark’s ML Pipelines API.
+DataFrame provides Spark with more information about the structure of both the data and the computation. This information can be used for extra optimizations.
 
-Another improvement is the Dataset API which was added in Spark 1.6 that provides the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL’s optimized execution engine. In the Scala API, DataFrame is simply a type alias of Dataset[Row]. While, in Java API, users need to use Dataset<Row> to represent a DataFrame.
+Unlike the RDD API, which is general and has no information about the data structure, the [DataFrame API](https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame) can:
+* Perform relational operations on RDDs and external data sources
+* Enable rich relational/ functional integration within Spark applications. 
+
+DataFrames are now the main data representation in Spark’s ML Pipelines API.
+
+Another improvement is the [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset) which was added in Spark 1.6 that provides the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL’s optimized execution engine. In the [Scala API](https://spark.apache.org/docs/2.3.0/api/scala/index.html#package), DataFrame is simply a type alias of Dataset[Row]. While, in [Java API](https://spark.apache.org/docs/2.3.0/api/java/index.html#package), users need to use Dataset<Row> to represent a DataFrame.
 
 The [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset)  is available in Scala and Java. Python and R does not have the support for the Dataset API, but due to their dynamic nature, many of the benefits of the Dataset API are already available.
+
+![](/assets/spark_df_performance.jpg){:class="img-responsive"}
 
 # Example Data: Kaggle’s House Prices Data
 Let’s start by reading the csv file into Spark DataFrame, and then later performing different transformations including creating new features.
