@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spark Tutorial Part 4: Getting Started with Spark DataFrames (Reading and Transforming your Data)"
+title:  "Spark Tutorial Part 4: Getting Started with Spark DataFrames"
 date:   2018-10-16 08:22:00
 author: Ayush Vatsyayan
 categories: Apache-Spark
@@ -8,7 +8,7 @@ tags:	    spark
 cover:  "/assets/instacode.png"
 ---
 
-This article in our Spark Tutorial series demonstrates the reading of data into DataFrame and applying different transformations on it.
+This article in our Spark Tutorial series demonstrates the reading of data into Spark DataFrame and applying different transformations on it.
 
 Prerequisites: [Set up Spark development environment](https://ayushedu.github.io/apache-spark/2018/06/04/Setting-up-spark-development-environment.html) and review the [Spark Fundamentals](https://ayushedu.github.io/apache-spark/2018/06/09/Apache-Spark_Fundamentals.html).
 Objective: To understand [Spark DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html#datasets-and-dataframes) and load data into Apache Spark.
