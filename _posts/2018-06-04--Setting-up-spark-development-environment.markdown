@@ -39,7 +39,7 @@ You can download the quick start VM from [Hortonworks](https://hortonworks.com/p
 For distributions you can choose [Hortonworks](https://hortonworks.com/products/data-platforms/hdp/), [Cloudera](https://www.cloudera.com/downloads/spark2/2-3.html), or [MapR](https://mapr.com/try-mapr/).
 
 ## Running Spark in the Cloud
-Databricks offers a free community edition of its cloud service as a learning environment. You need to [Sign up for Databricks Community Edition](https://accounts.cloud.databricks.com/registration.html#signup/community) and follow the steps.
+Databricks offers a free community edition of its cloud service as a learning environment. You need to [Sign up for Databricks Community Edition](https://databricks.com/signup#signup/community) and follow the steps.
 
 # Testing the intallation
 Once we have installed the Apache Spark, we need to test the installation.
