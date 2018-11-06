@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Apache Spark Introduction"
+title:  "Spark Tutorial #1: Apache Spark Introduction"
 date:   2018-04-18 08:43:59
 author: Ayush Vatsyayan
 categories: Apache-Spark

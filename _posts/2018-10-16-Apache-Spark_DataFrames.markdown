@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Spark Tutorial Part 4: Getting Started with DataFrames"
+title:  "Spark Tutorial #4: Getting Started with DataFrames"
 date:   2018-10-16 08:22:00
 author: Ayush Vatsyayan
 categories: Apache-Spark
 tags:	    spark
-cover:  "/assets/instacode.png"
+cover:  "/assets/pexels-photo-577585.jpeg"
 ---
 
 This article in our Spark Tutorial series **demonstrates the reading of data into Spark DataFrame and applying different transformations on it**.
@@ -46,56 +46,86 @@ The [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.
 
 ![](/assets/spark_df_performance.jpg){:class="img-responsive"}
 
-# Example: Kaggle’s House Prices Data
-For this example we are using the data from  Kaggle’s [House Prices](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/) competition. Once downloaded, we will put the downloaded csv files into HDFS. 
+# Example: Amazon product review data
+The dataset for Musical Instruments can be downloaded from [Stanford Network Analysis Project](http://snap.stanford.edu/data/amazon/productGraph/categoryFiles/reviews_Musical_Instruments_5.json.gz). 
 
-Let’s start by reading the csv file into Spark DataFrame, and then later performing different transformations including creating new features. The process is straightforward:
-1. Download data as csv file from Kaggle.
-2. Load csv file into HDFS.
-3. Load data from HDFS into Spark DataFrame.
-4. Explore and Transform the dataset.
+This dataset contains product reviews for Musical Instruments from Amazon. Once downloaded, we will put the downloaded csv files into HDFS. 
 
-For the code we are be using Spark’s python API. 
+## Column Definitions
+* **reviewerID** - ID of the reviewer, e.g. A2SUAM1J3GNN3B
+* **asin** - ID of the product, e.g. 0000013714
+* **reviewerName** - name of the reviewer
+* **helpful** - helpfulness rating of the review, e.g. 2/3
+* **reviewText** - text of the review
+* **overall** - rating of the product
+* **summary** - summary of the review
+* **unixReviewTime** - time of the review (unix time)
+* **reviewTime** - time of the review (raw)
 
-## Step 1: Download data from kaggle
-* Download dataset from [Kaggle House Prices competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data).
-* From the downloaded dataset we will be using only `train.csv`
-* The field descriotion is present in the `data_description.txt` in the downloaded dataset. It can also be viewed on the [competion site](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data).
 
-## Step 2: Load data into HDFS
+## Load data into HDFS
 Once the data is downloaded, put the data into HDFS by following below steps:
 1. Create directory: 
 ```
-hdfs dfs -mkdir example
+hdfs dfs -mkdir examples
 ```
-1. Put file train.csv into example directory in HDFS: 
+1. Put downloaded json file into example directory in HDFS: 
 ```
-hdfs dfs -put train.csv example
+hdfs dfs -put Musical_Instruments_5.json examples
 ```
 1. Print top 4 rows from file in HDFS: 
 ```
-hdfs dfs -cat example/train.csv | head -n 4
+hdfs dfs -cat examples/Mu*.json | head -n 4
 ```
 
-## Step 3: Load data into Spark from HDFS
+## Read data into Spark from HDFS
 For loading data into spark we need to initialize the [SparkSession object](https://spark.apache.org/docs/preview/api/python/pyspark.sql.html), which is the entry point to programming Spark with the Dataset and DataFrame API.
 
 In case we are using the spark-shell, the `SparkSession` object will be created automatically. Otherwise we can create is using below command:
 
 ```
-from pyspark.sql import SparkSession
+import org.apache.spark.sql.SparkSession
 
-spark = SparkSession \
-    .builder \
-    .appName("Python Spark example") \
-    .getOrCreate()
+val spark = SparkSession
+  .builder()
+  .appName("Spark example")
+  .getOrCreate()
 ```
 
 Once `SparkSession` is initialized, we can read the csv file into spark:
 ```
-df = spark.read.option("inferSchema", True).option("header",True).csv("example/train.csv")
+val df = spark.read.json("examples/Musical_Instruments_5.json")
 ```
 
+## Explore and Transform Data
 
+1. Extract month and year: For this we have used [from_unixtime](https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.sql.functions$) function, which converts the number of seconds from unix epoch (1970-01-01 00:00:00 UTC) to a string.
+```
+import org.apache.spark.sql.functions._
+val df1 = df.withColumn("date",from_unixtime($"unixReviewTime")).withColumn("year",year($"date")).withColumn("month", month($"date"))
+```
 
+2. Count of Review by year and month
+```
+df1.groupBy("year", "month").count().sort(desc("count")).show()
+```
 
+4. Average reviews per user
+```
+df1.count()/df1.select("reviewerID").distinct().count()
+```
+
+6. Average count of reviews per product
+```
+df1.groupBy("asin").agg(avg("overall"),count("overall")).sort(desc("count(overall)")).show()
+```
+
+7.  Top 10 rated product
+```
+df1.groupBy("asin").agg(avg("overall"),count("overall")).sort(("avg(overall)")).show()
+```
+
+# Summary
+I have explained the concept of DataFrames along with reading a json dataset into the Spark. We have also looked at creating new columns and performing different summarization as well. 
+
+In the next article we will carry forward this example and will try to perform some text analytics on the review summary.
