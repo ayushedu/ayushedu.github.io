@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spark Tutorial #4: Getting Started with DataFrames"
+title:  "Spark Tutorial Part 4: Getting Started with DataFrames"
 date:   2018-10-16 08:22:00
 author: Ayush Vatsyayan
 categories: Apache-Spark

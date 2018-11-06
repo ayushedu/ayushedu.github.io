@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spark Tutorial #3: Apache Spark Fundamentals"
+title:  "Spark Tutorial Part 3: Apache Spark Fundamentals"
 date:   2018-06-09 04:24:44
 author: Ayush Vatsyayan
 categories: Apache-Spark

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spark Tutorial #2: Setting up Spark Development Environment"
+title:  "Spark Tutorial Part 2: Setting up Spark Development Environment"
 date:   2018-06-04 08:43:59
 author: Ayush Vatsyayan
 categories: Apache-Spark
