@@ -53,4 +53,4 @@ At this point your prompt will change back to normal.
 # References
 * <https://www.python.org/dev/peps/pep-0405/>
 * <http://www.virtualenv.org>
-
+* <https://xkcd.com/1987/>

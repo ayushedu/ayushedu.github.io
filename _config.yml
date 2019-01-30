@@ -10,17 +10,17 @@ exclude:
 
 # Site settings
 title: "Ayush Vatsyayan"
-subtitle: "Growth is an ongoing part of life."
+subtitle: "Technical Insights from BigData, Analytics Dashboarding, & Application Development."
 email: vatsyayan.ayush@gmail.com
 name: Ayush Vatsyayan
 description: >
-  A simple yet classy theme for your Jekyll website or blog.
+
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://bencentra.github.io" # the base hostname & protocol for your site
-cover: "/assets/header_image.jpg"
+url: "http://ayushedu.github.io" # the base hostname & protocol for your site
+cover: "/assets/computer-desk-electronics-238118.jpg"
 logo: "/assets/new_logo.png"
 
 # Build settings
@@ -72,29 +72,29 @@ descriptions:
 social:
   - name: Twitter
     icon: twitter
-    username: Twitter
-    url: https://twitter.com/ayushva
+    username: "@ayushvatsyayan"
+    url: https://twitter.com/ayushvatsyayan
     desc: Follow me on Twitter
     share: true
 
-  - name: Stackoverflow
-    icon: stack-overflow
-    username: StackOverflow
-    url: https://stackoverflow.com/users/story/6065591
-    desc: Friend me on Facebook
-    share: true
+  #- name: Stackoverflow
+  #  icon: stack-overflow
+  #  username: StackOverflow
+  #  url: https://stackoverflow.com/users/story/6065591
+  #  desc: Friend me on Facebook
+  #  share: true
 
   - name: GitHub
     icon: github
-    username: GitHub
+    username: "ayushedu"
     url: https://github.com/ayushedu
     desc: Fork me on GitHub
     share: false
 
   - name: LinkedIn
     icon: linkedin
-    username: LinkedIn
-    url: https://www.linkedin.com/in/ayushv/
+    username: ayushvatsyayan
+    url: https://www.linkedin.com/in/ayushvatsyayan
     desc: Connect with me on LinkedIn
     share: true
 
@@ -103,7 +103,7 @@ social:
     username:
     url:
     desc: Add me to your Circles
-    share: true
+    share: false
 
   - name: YouTube
     icon: youtube
@@ -124,7 +124,7 @@ social:
     username:
     url:
     desc: Follow me on Pinterest
-    share: true
+    share: false
 
   - name: SoundCloud
     icon: soundcloud
