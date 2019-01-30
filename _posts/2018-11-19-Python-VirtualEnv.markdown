@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "3 Quick Steps to Multiple Python Versions"
+title:  "3 Quick Steps to Installing multiple Python versions"
 date:   2018-12-25 10:04:04
 author: Ayush Vatsyayan
 categories: Python
@@ -25,17 +25,17 @@ The `venv` module provides support for creating lightweight “virtual environme
 
 ---
 
-# Creating Virtual Environment
-**Step 0:** Check `python` is installed:
+# Steps to create Virtual Environment
+**<u>Step 0</u>:** Check `python` is installed:
 ```shell
 python3 --version
 ```
 
-**Step 1:** Decide upon a directory where you want to place it, and run the `venv` module as a script with the directory path:
+**<u>Step 1</u>:** Decide upon a directory where you want to place it, and run the `venv` module as a script with the directory path:
 ```shell
 python3 -m venv sample-env
 ```
-**Step 2:** Activate virtual environment:
+**<u>Step 2</u>:** Activate virtual environment:
 ```shell
 source sample-env/bin/activate
 ```
@@ -44,7 +44,7 @@ Activating the virtual environment will change the shell’s prompt to show what
 
 At this step python will now be accesible via `python` command. You can install and remove the packages using `pip`, which will also become available in the new environment.
 
-**Step 3:** If you are done working, you can deactivate the virtual environment:
+**<u>Step 3</u>:** If you are done working, you can deactivate the virtual environment:
 ```
 deactivate
 ```

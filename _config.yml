@@ -13,13 +13,13 @@ title: "Ayush Vatsyayan"
 subtitle: "Growth is an ongoing part of life."
 email: vatsyayan.ayush@gmail.com
 name: Ayush Vatsyayan
-#description: >
-#  A simple yet classy theme for your Jekyll website or blog.
+description: >
+  A simple yet classy theme for your Jekyll website or blog.
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://ayushedu.github.io" # the base hostname & protocol for your site
+url: "http://bencentra.github.io" # the base hostname & protocol for your site
 cover: "/assets/header_image.jpg"
 logo: "/assets/new_logo.png"
 
@@ -72,29 +72,29 @@ descriptions:
 social:
   - name: Twitter
     icon: twitter
-    username: "@ayushvatsyayan"
-    url: https://twitter.com/ayushvatsyayan
+    username: Twitter
+    url: https://twitter.com/ayushva
     desc: Follow me on Twitter
     share: true
 
   - name: Stackoverflow
     icon: stack-overflow
-    username: "ayush-vatsyayan"
+    username: StackOverflow
     url: https://stackoverflow.com/users/story/6065591
-    desc: See my Stackoverflow profile
+    desc: Friend me on Facebook
     share: true
 
   - name: GitHub
     icon: github
-    username: "ayushedu"
+    username: GitHub
     url: https://github.com/ayushedu
     desc: Fork me on GitHub
     share: false
 
   - name: LinkedIn
     icon: linkedin
-    username: "ayushvatsyayan"
-    url: https://www.linkedin.com/in/ayushvatsyayan/
+    username: LinkedIn
+    url: https://www.linkedin.com/in/ayushv/
     desc: Connect with me on LinkedIn
     share: true
 
@@ -103,10 +103,10 @@ social:
     username:
     url:
     desc: Add me to your Circles
-    share: false
+    share: true
 
   - name: YouTube
-   icon: youtube
+    icon: youtube
     username:
     url:
     desc: Subscribe on YouTube
@@ -124,7 +124,7 @@ social:
     username:
     url:
     desc: Follow me on Pinterest
-    share: false
+    share: true
 
   - name: SoundCloud
     icon: soundcloud
@@ -173,7 +173,7 @@ social:
     username:
     url:
     desc: Share to Reddit
-    share: false
+    share: true
 
   - name: "Hacker News"
     icon: hacker-news
