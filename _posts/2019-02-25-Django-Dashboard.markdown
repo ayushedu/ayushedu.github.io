@@ -5,7 +5,7 @@ date:   2019-02-25 11:04:04
 author: Ayush Vatsyayan
 categories: django
 tags:	    django
-cover:  "/assets/django_dashboard.png"
+cover:  "/assets/analyst-analytics-blur-106344.jpg"
 ---
 
 This is an all in one tutorial for creating an analytics dashboard using <a target="_blank" href="https://www.djangoproject.com/">Django</a>, which is a python based web-framework.
