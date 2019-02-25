@@ -115,10 +115,10 @@ def index(request):
 # Design the Dashboard
 
 #### #8. Define the html with charting engine
-This is the part where we desing the dashboard using Bootstrap and Highcharts.
+This is the part where we design the dashboard using Bootstrap and Highcharts.
 Bootstrap will design the page skeleton including the chart container, while HighCharts will create the chart using javascript.
 
-First step is adding the libaries.
+First step is adding the libraries.
 * Bootstrap css in head
 ```html
 <!-- Bootstrap core CSS -->                                                                                                                              
@@ -146,7 +146,7 @@ Next step is defining the container for chart
 ```
 
 Finally creating charts in javascript
-```javscript
+```javascript
 {% raw %}_categories = {{categories|safe}};
 _values = {{values|safe}};{% endraw %}
 Highcharts.chart('container', {
