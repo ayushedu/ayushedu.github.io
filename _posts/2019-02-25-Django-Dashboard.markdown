@@ -115,6 +115,86 @@ def index(request):
 # Design the Dashboard
 
 #### #8. Define the html with charting engine
+This is the part where we desing the dashboard using Bootstrap and Highcharts.
+Bootstrap will design the page skeleton including the chart container, while HighCharts will create the chart using javascript.
+
+First step is adding the libaries.
+* Bootstrap css in head
+```html
+<!-- Bootstrap core CSS -->                                                                                                                              
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa\
+9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+```
+
+* Highchart libraries in body
+```html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+```
+
+* Bootstrap and other required libraries in body
+```html
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+```
+
+Next step is defining the container for chart
+```html
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
+```
+
+Finally creating charts in javascript
+```javscript
+_categories = {{categories|safe}};
+_values = {{values|safe}};
+
+Highcharts.chart('container', {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: 'Sales in Thousand per Engine Capacity'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories:_categories,
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: 'Sales in thousands'
+		}
+	},
+	tooltip: {
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+			footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			pointPadding: 0.2,
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: 'Engine Capacity',
+		data: _values
+		
+	}]
+});
+
+```
+
+This is how the final HTML will look
+
 ```html
 <!doctype html>
 <html lang="en">
