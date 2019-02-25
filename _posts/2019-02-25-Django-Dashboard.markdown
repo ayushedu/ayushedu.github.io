@@ -147,9 +147,8 @@ Next step is defining the container for chart
 
 Finally creating charts in javascript
 ```javscript
-_categories = {{categories|safe}};
-_values = {{values|safe}};
-
+{% raw %}_categories = {{categories|safe}};
+_values = {{values|safe}};{% endraw %}
 Highcharts.chart('container', {
 	chart: {
 		type: 'column'
@@ -309,7 +308,7 @@ This is how the final HTML will look
 	  <h2 class="pt-4">Section Details</h2>
 	  <p class="text-danger">This table will be upated by Django objects, hence leaving it as it is.</p>
 	  <div class="table-responsive">
-	    {{table_data|safe}}
+	    {% raw %}{{table_data|safe}}{% endraw %}
 	  </div>
 	</main>
       </div>
@@ -321,8 +320,8 @@ This is how the final HTML will look
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     
     <script>
-      _categories = {{categories|safe}};
-      _values = {{values|safe}};
+      _categories = {% raw %}{{categories|safe}};
+      _values = {{values|safe}};{% endraw %}
       
       Highcharts.chart('container', {
 	  chart: {
