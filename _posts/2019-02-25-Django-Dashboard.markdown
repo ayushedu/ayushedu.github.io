@@ -25,14 +25,50 @@ pip3 install django
 django-admin startproject sample_dashboard
 ```
 
+The `django-admin` tool creates a folder structure as shown below:
+```
+sample_dashboard/
+    manage.py
+    sample_dashboard/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+```
+
+The locallibrary project sub-folder is the entry point for the website:
+
+* __init__.py is an empty file that instructs Python to treat this directory as a Python package.
+* settings.py contains all the website settings. This is where we register any applications we create, the location of our static files, database configuration details, etc.
+* urls.py defines the site url-to-view mappings. While this could contain all the url mapping code, it is more common to delegate some of the mapping to particular applications, as you'll see later.
+* wsgi.py is used to help your Django application communicate with the web server. You can treat this as boilerplate.
+
+The manage.py script is used to create applications, work with databases, and start the development web server. 
+
 #### #3. Create application
 
 ```shell
 python3 manage.py startapp sales 
 ```
+The tool creates a new folder and populates it with files for the different parts of the application. Most of the files contain some minimal boilerplate code for working with the associated objects.
 
-#### #4. Register app 
-Add following line in settings.py
+The updated project directory should now look like this:
+```
+sample_dashboard/
+    manage.py
+    sample_dashboard/
+    sales/
+        admin.py
+        apps.py
+        models.py
+        tests.py
+        views.py
+        __init__.py
+        migrations/
+```
+
+#### #4. Register the application
+Open the project settings file sample_dashboard/sample_dashboard/settings.py and find the definition for the INSTALLED_APPS list. Then add a new line at the end of the list, 
 
 ```python
 INSTALLED_APPS = [
@@ -46,7 +82,9 @@ INSTALLED_APPS = [
 ]
 ```
 
-#### #5. Add application in urls.py
+#### #5. Add  url mapper
+
+Open sample_dashboard/sample_dashboard/urls.py and add map the url, along with the static folder.
 
 ```python
 from django.contrib import admin
@@ -59,11 +97,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sales/', include("sales.urls")),
-    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+    path('', RedirectView.as_view(url='/sales/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ```
 
 #### #6. Define view in urls.py
+
 ```python
 from django.urls import path
 from . import views
@@ -119,33 +158,33 @@ This is the part where we design the dashboard using Bootstrap and Highcharts.
 Bootstrap will design the page skeleton including the chart container, while HighCharts will create the chart using javascript.
 
 First step is adding the libraries.
-* Bootstrap css in head
+* Add Bootstrap css
 ```html
 <!-- Bootstrap core CSS -->                                                                                                                              
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa\
 9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 ```
 
-* Highchart libraries in body
+* Add Highchart libraries
 ```html
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 ```
 
-* Bootstrap and other required libraries in body
+* Add Bootstrap and other required libraries
 ```html
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 ```
 
-Next step is defining the container for chart
+Next step is defining the container for chart. This is where charts will be added from the javascript.
 ```html
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
 ```
 
-Finally creating charts in javascript
+Finally creating charts in javascript, wherein we are assigning chart values from Django objects `{{categories|safe}}` and `{{values|safe}}`. We are also defining chart title, yaxis title, tooltips, and series label.
 ```javascript
 {% raw %}_categories = {{categories|safe}};
 _values = {{values|safe}};{% endraw %}
