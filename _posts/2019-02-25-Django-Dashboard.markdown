@@ -184,7 +184,7 @@ Next step is defining the container for chart. This is where charts will be adde
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
 ```
 
-Finally creating charts in javascript, wherein we are assigning chart values from Django objects `{{categories|safe}}` and `{{values|safe}}`. We are also defining chart title, yaxis title, tooltips, and series label.
+Finally creating charts in javascript, wherein we are assigning chart values from Django objects {% raw %}{{categories|safe}} and {{values|safe}}{% endraw %}. We are also defining chart title, yaxis title, tooltips, and series label.
 ```javascript
 {% raw %}_categories = {{categories|safe}};
 _values = {{values|safe}};{% endraw %}
