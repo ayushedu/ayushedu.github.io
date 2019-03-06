@@ -36,12 +36,12 @@ sample_dashboard/
         wsgi.py
 ```
 
-The locallibrary project sub-folder is the entry point for the website:
+The sample_dashboard project sub-folder is the entry point for the website:
 
-* __init__.py is an empty file that instructs Python to treat this directory as a Python package.
-* settings.py contains all the website settings. This is where we register any applications we create, the location of our static files, database configuration details, etc.
-* urls.py defines the site url-to-view mappings. While this could contain all the url mapping code, it is more common to delegate some of the mapping to particular applications, as you'll see later.
-* wsgi.py is used to help your Django application communicate with the web server. You can treat this as boilerplate.
+* **\_\_init\_\_.py** is an empty file that instructs Python to treat this directory as a Python package.
+* **settings.py** contains all the website settings. This is where we register any applications we create, the location of our static files, database configuration details, etc.
+* **urls.py** defines the site url-to-view mappings. While this could contain all the url mapping code, it is more common to delegate some of the mapping to particular applications, as you'll see later.
+* **wsgi.py** is used to help your Django application communicate with the web server. You can treat this as boilerplate.
 
 The manage.py script is used to create applications, work with databases, and start the development web server. 
 
@@ -68,7 +68,7 @@ sample_dashboard/
 ```
 
 #### #4. Register the application
-Open the project settings file sample_dashboard/sample_dashboard/settings.py and find the definition for the INSTALLED_APPS list. Then add a new line at the end of the list, 
+Open the project settings file sample_dashboard/sample_dashboard/settings.py and find the definition for the `INSTALLED_APPS` list. Then add a new line at the end of the list, 
 
 ```python
 INSTALLED_APPS = [
@@ -157,6 +157,13 @@ def index(request):
 This is the part where we design the dashboard using Bootstrap and Highcharts.
 Bootstrap will design the page skeleton including the chart container, while HighCharts will create the chart using javascript.
 
+After defining the view, we will now be defining the code that presents the information to users. This is how the data flows:
+* URL mappers forward the supported URLs (and any information encoded in the URLs) to the appropriate view functions.
+* View functions get the requested data from the models, create HTML pages that display the data, and return the pages to the user to view in the browser
+* Templates are used when rendering data in the views.
+
+
+Django will automatically look for templates in a directory named 'templates' in your application. Hence, let's create a new folder named `templates` in sales and create a new file `index.html` in it. The complete index.html is posted below, but before that here are the snippets:
 First step is adding the libraries.
 * Add Bootstrap css
 ```html
@@ -184,7 +191,7 @@ Next step is defining the container for chart. This is where charts will be adde
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto" class="border"></div>
 ```
 
-Finally creating charts in javascript, wherein we are assigning chart values from Django objects {% raw %}{{categories|safe}} and {{values|safe}}{% endraw %}. We are also defining chart title, yaxis title, tooltips, and series label.
+Finally creating charts in javascript, wherein we are assigning chart values from Django objects `{% raw %}{{categories|safe}}{% endraw %}` and `{% raw %}{{values|safe}}{% endraw %}`. We are also defining chart title, yaxis title, tooltips, and series label.
 ```javascript
 {% raw %}_categories = {{categories|safe}};
 _values = {{values|safe}};{% endraw %}
