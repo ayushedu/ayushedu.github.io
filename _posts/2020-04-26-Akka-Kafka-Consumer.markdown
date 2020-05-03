@@ -5,14 +5,14 @@ date:   2020-04-26 04:04:04
 author: Ayush Vatsyayan
 categories: scala
 tags:	    scala
-cover:  "assets/akka-kakfa-consumer.jpg"
+cover:  "/assets/akka-kakfa-consumer.jpg"
 ---
 
 I faced this issue when working on a project last week. So I had to add a Kafka consumer in the project in order to write an integration test case. Now kafka consumer is pretty straightforward when using akka-stream, but the project had an earlier version of Akka (2.4.8) on which akka-stream wasn't supported.
 
 Being pretty new to Akka, I googled to see if I can find some akka core solution of creating a kafka consumer, but nothing existed except one using akka-streams. The only other solution was using a java while loop, wherein the code continuously consume messages. This approach is a correct solution, however I cannot use it because whole project is written in scala this seemed quite an ugly solution to me.
 
-For the  solution I've used akka and then send the akka messages to start and stop the kafka message consumption. We can also use Akka FSM, which I will cover some other time.
+For the  solution I've used akka and then send the akka messages to start and stop the kafka message consumption.
 
 Consider this java version of kafka consumer - here we are consuming kafka messages in the while loop.
 ```java
@@ -93,4 +93,4 @@ override def wrappedReceive: Receive = {
 }
 ```
 
-This is a pretty straightforward way but works for a project where scala and akka are used.
+This is a pretty straightforward way but works for a project where scala and akka are used. We can also use Akka FSM here, which I'll cover some other time.
