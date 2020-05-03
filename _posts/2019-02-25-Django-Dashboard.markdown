@@ -3,7 +3,7 @@ layout: post
 title:  "Quick Steps to Analytics Dashboard"
 date:   2019-02-25 11:04:04
 author: Ayush Vatsyayan
-categories: python
+categories: Python
 tags:	    python
 cover:  "/assets/analyst-analytics-blur-106344.jpg"
 ---

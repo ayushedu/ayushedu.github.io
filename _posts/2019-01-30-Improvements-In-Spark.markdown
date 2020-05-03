@@ -3,7 +3,7 @@ layout: post
 title:  "5 Improvements and Features in Spark 2.4.0"
 date:   2019-01-20 13:24:00
 author: Ayush Vatsyayan
-categories: Apache-spark
+categories: Apache-Spark
 tags:	    spark
 cover:  "/assets/apache_spark_logo_big_0.png"
 ---
