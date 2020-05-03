@@ -8,7 +8,7 @@ tags:	    scala
 cover:  ""
 ---
 
-I faced this issue when working on a project last week. So I had to add a `Kafka` consumer in the project in order to write an integration test case. Now kafka consumer is pretty straightforward when using akka-stream, but the project had an earlier version of Akka (2.4.8) on which akka-stream wasn't supported.
+I faced this issue when working on a project last week. So I had to add a Kafka consumer in the project in order to write an integration test case. Now kafka consumer is pretty straightforward when using akka-stream, but the project had an earlier version of Akka (2.4.8) on which akka-stream wasn't supported.
 
 Being pretty new to Akka, I googled to see if I can find some akka core solution of creating a kafka consumer, but nothing existed except one using akka-streams. The only other solution was using a java while loop, wherein the code continuously consume messages. This approach is a correct solution, however I cannot use it because whole project is written in scala this seemed quite an ugly solution to me.
 
@@ -23,9 +23,9 @@ while (true) {
 }
 ```
 
-Now to make it an akka code we have to replace this while loop with the	akka messages. For this	we will	define two scala case objects START and STOP.
+Now to make it an akka code we have to replace this while loop with the	akka messages. For this	we will	define two scala case objects `CONSUME` and `STOP`.
 ```scala
-case object START
+case object CONSUME
 case object STOP
 ```
 
@@ -55,35 +55,35 @@ override def preStart() {
 }
 ```
 
-Now we will define our consumer	to receive START and STOP messages.
+Now we will define our consumer	to receive `CONSUME` and `STOP` messages.
 ```scala
 override def wrappedReceive: Receive = {
-  case START => 
+  case CONSUME => 
     val records = consumer.poll(100)
     records.asScala.foreach { x =>
         consumedMsgs += (x.topic -> x.value)
     }
 
-    self ! START // keep consuming messages
+    self ! CONSUME // keep consuming messages
 
   case STOP => // do nothing for now
 }
 ```
 
 
-Now to mimic while loop	in scala we are sending START to self. This will be trigerred as soon as client code sends START.
-We are receiving messages now, but we need to stop consuming messages when client wants. For this client will send the STOP message and we will make consumer as null.
-To stop consuming messages we will also have to add a null check when consuming START message. Here is how it looks now
+Now to mimic while loop	in scala we are sending `CONSUME` to self. This will be trigerred as soon as client code sends `CONSUME`.
+We are receiving messages now, but we need to stop consuming messages when client wants. For this client will send the `STOP` message and we will make consumer as null.
+To stop consuming messages we will also have to add a null check when consuming `CONSUME` message. Here is how it looks now
 
 ```scala
 override def wrappedReceive: Receive = {
-  case START if consumer != null => // consumer only if consumer isn't null
+  case CONSUME if consumer != null => // consumer only if consumer isn't null
     val records = consumer.poll(10)
     records.asScala.foreach { x =>
         consumedMsgs += (x.topic -> x.value)
     }
 
-    self ! START // keep consuming messages
+    self ! CONSUME // keep consuming messages
 
   case STOP =>
     if (consumer != null) {
