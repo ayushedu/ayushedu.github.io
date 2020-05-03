@@ -5,7 +5,7 @@ date:   2020-04-26 04:04:04
 author: Ayush Vatsyayan
 categories: scala
 tags:	    scala
-cover:  ""
+cover:  "assets/akka-kakfa-consumer.jpg"
 ---
 
 I faced this issue when working on a project last week. So I had to add a Kafka consumer in the project in order to write an integration test case. Now kafka consumer is pretty straightforward when using akka-stream, but the project had an earlier version of Akka (2.4.8) on which akka-stream wasn't supported.
