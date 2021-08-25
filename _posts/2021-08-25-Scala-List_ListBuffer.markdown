@@ -34,37 +34,26 @@ final class ListBuffer[A]
 
 To test which one is faster, I wrote a small scala script.
 
-```scala
-def immutableList(): Long = {
-    val start = System.currentTimeMillis()
-    val range = 1 to 500000
-
-    var l1 = List[Int]()
-    range.foreach {
-    	i =>		  
-	l1 = i :: l1 // pre-append the element to list
-    }
-    System.currentTimeMillis() - start
+````scala
+def addToListBuffer(range: Range): Int = {
+  val buffer = collection.mutable.ListBuffer.empty[Int]
+  range.foreach(buffer += _)
+  buffer.size
 }
 
-def mutableList(): Long = {
-    val start = System.currentTimeMillis()
-    val range = 1 to 1000000
-
-    //var l1 = List.newBuilder[Int]
-    val l1 = collection.mutable.ListBuffer.empty[Int]
-    range.foreach {
-    	i =>		  
-	l1 += i
-    }
-    System.currentTimeMillis() - start
+def addToList(range: Range): Int = {
+  var list = List[Int]()
+  range.foreach(e => list = e :: list)
+  list.size
 }
 
-val time = if(args(0) == "mutable") mutableList else immutableList
+val start = System.currentTimeMillis()
+val range = 1 to args(1).toInt
 
-println(s"Took $time milliseconds for ${args(0)}.")
+val size = if(args(0) == "mutable") addToListBuffer(range) else addToList(range)
+val time = System.currentTimeMillis() - start
+
+println(s"Took $time milliseconds for ${args(0)} for $size elems.")
 ```
-On random run the mutable one took `1084 milliseconds`, while immutable with pre-append took `579 milliseonds`
 
-So, for adding element to list, the immutable one is faster than mutable one, along with the functional programming methods exposed.
-So design wise it makes more sense to use immutable list as var as mark it as private.
+The performance as expected is identical, but ue to functional programming methods exposed it makes more sense to use immutable list as private var.
