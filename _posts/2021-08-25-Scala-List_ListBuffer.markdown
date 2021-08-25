@@ -12,7 +12,7 @@ As per scala collection performance they seem pretty identical, but still the qu
 
 First thing I did it deep dive into scala collection code of List and ListBuffer. List extends Abstract and linear seq while Listbuffer extends buffer, which means there are lot of function such as head, tail, foldLeft, flatMap are missing from mutable one.
 
-```
+```scala
 sealed abstract class List[+A] extends AbstractSeq[A]
                                   with LinearSeq[A]
                                   with Product
@@ -20,7 +20,7 @@ sealed abstract class List[+A] extends AbstractSeq[A]
                                   with LinearSeqOptimized[A, List[A]]
                                   with Serializable
 ```
-```
+```scala
 final class ListBuffer[A]
       extends AbstractBuffer[A]
          with Buffer[A]
@@ -34,7 +34,7 @@ final class ListBuffer[A]
 
 To test which one is faster, I wrote a small scala script.
 
-```
+```scala
 def immutableList(): Long = {
     val start = System.currentTimeMillis()
     val range = 1 to 500000
