@@ -56,4 +56,4 @@ val time = System.currentTimeMillis() - start
 println(s"Took $time milliseconds for ${args(0)} for $size elems.")
 ```
 
-The performance as expected is identical, but ue to functional programming methods exposed it makes more sense to use immutable list as private var.
+The performance, as expected, is identical, but due to functional programming methods exposed it makes more sense to use immutable List as private var.
