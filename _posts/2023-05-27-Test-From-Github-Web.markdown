@@ -10,6 +10,4 @@ tags:	    test
 This is a test page
 # Heading 1
 ## Heading 2
-```
-code block
-```
+Code block should go here.
