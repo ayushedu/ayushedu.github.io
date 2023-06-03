@@ -99,7 +99,10 @@ Also we increased the data retention period from an year to two years. This enab
 For the quick workaround we used the following compaction parameters to trigger compaction, as earlier the compaction wasn't taking place. 
 {% highlight sql %}
 ALTER TABLE order_details WITH compaction = 
-{ 'class' :  'LeveledCompactionStrategy','unchecked_tombstone_compaction':true, 'tombstone_compaction_interval':60,'tombstone_threshold':0.01  } 
+{ 'class' :  'LeveledCompactionStrategy',
+'unchecked_tombstone_compaction':true, 
+'tombstone_compaction_interval':60,
+'tombstone_threshold':0.01  } 
 AND gc_grace_seconds = 60;
 
 {% endhighlight %}
