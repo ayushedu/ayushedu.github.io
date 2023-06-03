@@ -3,7 +3,7 @@ layout: post
 title:  "Inefficient Cassandra Query"
 date:   2023-06-03 04:04:04
 author: Ayush Vatsyayan
-categories: Scala
+categories: Cassandra
 tags:	    scala
 ---
 
