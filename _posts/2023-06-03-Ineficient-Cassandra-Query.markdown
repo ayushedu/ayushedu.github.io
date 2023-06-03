@@ -105,10 +105,10 @@ AND gc_grace_seconds = 60;
 {% endhighlight %}
 
 Currently the table is using all default value for compaction parameters. We will have to test and decide on the solution. The focus will be on finetuning following parameters
-	* `unchecked_tombstone_compaction`
-	* `tombstone_compaction_interval`
-	* `tombstone_threshold`
-	* `gc_grace_seconds`: We are using low gc_grace_seconds, as ghost data won't be a issue for the historical data.
+* `unchecked_tombstone_compaction`
+* `tombstone_compaction_interval`
+* `tombstone_threshold`
+* `gc_grace_seconds`: We are using low gc_grace_seconds, as ghost data won't be a issue for the historical data.
 
 ## Decreasing tombstone generation
 Currently the data is deleted row by row i.e. data is deleted by both partitioning key and clustering key. We will now be deleting data by partitioning key only, which will reduce the tombstone generation by 88% on the client data. For each partition deletion only single tombstone will be generated.
