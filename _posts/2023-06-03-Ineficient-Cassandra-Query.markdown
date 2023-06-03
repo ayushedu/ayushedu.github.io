@@ -38,8 +38,8 @@ DELETE FROM order_details WHERE customer_id=? AND week_of_year=? AND order_id=?
 
 # Issue with above approach
 There are two issues with the above select query:
-	1. The query to fetch expired data is inefficient, as it uses `ALLOW FILTERING` - something not recommended for production use. 
-	2. The data is deleted row by row, which generates lot of tombstones. The tombstones build up more quickly than compaction process can handle.
+1. The query to fetch expired data is inefficient, as it uses `ALLOW FILTERING` - something not recommended for production use. 
+2. The data is deleted row by row, which generates lot of tombstones. The tombstones build up more quickly than compaction process can handle.
 
 ## Why ALLOW FILTERING isn't recommended 
 `ALLOW FILTERING` makes cassandra do a full scan of all partitions. Thus, returning the results experience a significant latency proportional to amount of data in table.  Cassandra works this up by retrieving all the data from table order_details and then filtering out the ones which are less than the `week_of_year` column.
@@ -105,10 +105,10 @@ AND gc_grace_seconds = 60;
 {% endhighlight %}
 
 Currently the table is using all default value for compaction parameters. We will have to test and decide on the solution. The focus will be on finetuning following parameters
-	• `unchecked_tombstone_compaction`
-	• `tombstone_compaction_interval`
-	• `tombstone_threshold`
-	• `gc_grace_seconds`: We are using low gc_grace_seconds, as ghost data won't be a issue for the historical data.
+	* `unchecked_tombstone_compaction`
+	* `tombstone_compaction_interval`
+	* `tombstone_threshold`
+	* `gc_grace_seconds`: We are using low gc_grace_seconds, as ghost data won't be a issue for the historical data.
 
 ## Decreasing tombstone generation
 Currently the data is deleted row by row i.e. data is deleted by both partitioning key and clustering key. We will now be deleting data by partitioning key only, which will reduce the tombstone generation by 88% on the client data. For each partition deletion only single tombstone will be generated.
