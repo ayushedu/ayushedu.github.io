@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Flexible Scala Import"
+title:  "Inefficient Cassandra Query"
 date:   2023-06-03 04:04:04
 author: Ayush Vatsyayan
 categories: Scala
