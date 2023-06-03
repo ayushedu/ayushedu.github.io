@@ -19,7 +19,7 @@ description: >
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://ayushedu.github.io" # the base hostname & protocol for your site
-cover: "/assets/computer-desk-electronics-238118.jpg"
+#cover: "/assets/computer-desk-electronics-238118.jpg"
 logo: "/assets/new_logo.png"
 
 # Build settings
