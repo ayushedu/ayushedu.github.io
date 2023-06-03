@@ -7,7 +7,4 @@ categories: test
 tags:	    test
 ---
 
-This is a test page
-# Heading 1
-## Heading 2
-Code block should go here.
+I just wanted to check how will be experience to create a new post directly from web, as so far I've only used console to do it.
