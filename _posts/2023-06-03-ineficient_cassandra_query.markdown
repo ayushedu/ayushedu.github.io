@@ -42,7 +42,7 @@ There are two issues with the above select query:
 	2. The data is deleted row by row, which generates lot of tombstones. The tombstones build up more quickly than compaction process can handle.
 
 ## Why ALLOW FILTERING isn't recommended 
-`ALLOW FILTERING` makes cassandra do a full scan of all partitions. Thus, returning the results experience a significant latency proportional to amount of data in table.  Cassandra works this up by retrieving all the data from table order_details and then filtering out the ones which are less than the week_of_year column.
+`ALLOW FILTERING` makes cassandra do a full scan of all partitions. Thus, returning the results experience a significant latency proportional to amount of data in table.  Cassandra works this up by retrieving all the data from table order_details and then filtering out the ones which are less than the `week_of_year` column.
 
 If the dataset is small, the performance will be reasonable. Hence, cassandra throws a warning.  One way to make this efficient is getting all rows and then fitler them in your code. This is the same approach we took for the workaround script.
 
@@ -125,7 +125,7 @@ CREATE TABLE order_details (
 )
 {% endhighlight %}
 
-Here we removed `customer_id` from partition key. This will allow us to delete data by `week_of_year` only so that now we won't have to retrieve expired records from db to figure out customer_id and order_id. Now the delete query will be
+Here we removed `customer_id` from partition key. This will allow us to delete data by `week_of_year` only so that now we won't have to retrieve expired records from db to figure out `customer_id` and `order_id`. Now the delete query will be
 {% highlight sql %}
 DELETE FROM order_details WHERE week_of_year=?
 {% endhighlight %}
