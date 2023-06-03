@@ -4,7 +4,7 @@ title:  "Inefficient Cassandra Query"
 date:   2023-06-03 04:04:04
 author: Ayush Vatsyayan
 categories: Cassandra
-tags:	    scala
+tags:	    cassandra
 ---
 
 The problem with taking over an existing project in between is there are always blindspots you aren't aware of.
