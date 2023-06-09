@@ -9,7 +9,7 @@ exclude:
   - "/vendor/"
 
 # Site settings
-#title: "Ayush Vatsyayan"
+title: "My Tech Journal"
 email: vatsyayan.ayush@gmail.com
 name: Ayush Vatsyayan
 description: >
