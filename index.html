@@ -1,86 +1,272 @@
 ---
 layout: default
+title:
+description: "Ayush Vatsyayan is a Principal Engineer and independent technical consultant helping engineering teams design, troubleshoot and scale distributed systems, event-driven platforms and data-intensive applications."
 ---
+
 <div class="home">
 
-<div class="site-header-container {% if site.cover %}has-cover{% endif %}" {% if site.cover %}style="background-image: url({{ site.cover | prepend: site.baseurl }});"{% endif %}>
-  <div class="scrim {% if site.cover %}has-cover{% endif %}">
-    <header class="site-header">
-      <h1 class="title">{{ site.title }}</h1>
-      {% if site.subtitle %}<p class="subtitle">{{ site.subtitle }}</p>{% endif %}
-    </header>
+<section class="hero">
+  <div class="wrapper">
+    <p class="hero-identity">Principal Engineer &amp; Independent Technical Consultant</p>
+    <h1 class="hero-name">{{ site.name }}</h1>
+    <p class="hero-specialization">Distributed Systems &middot; Event-Driven Architecture &middot; Data Platforms &middot; Performance &amp; Scalability</p>
+
+    <p class="hero-statement">
+      I help engineering teams design, troubleshoot and scale distributed systems,
+      event-driven platforms and data-intensive applications.
+    </p>
+
+    <p class="hero-actions">
+      <a class="button button-primary" href="{{ "/consulting/" | prepend: site.baseurl }}">Consulting</a>
+      <a class="button button-secondary" href="{{ "/case-studies/" | prepend: site.baseurl }}">Case Studies</a>
+      <a class="button button-secondary" href="{{ "/posts/" | prepend: site.baseurl }}">Technical Writing</a>
+      <a class="button button-secondary" href="https://github.com/ayushedu">GitHub</a>
+      <a class="button button-secondary" href="{{ "/contact/" | prepend: site.baseurl }}">Contact</a>
+    </p>
   </div>
-</div>
+</section>
 
-<div class="wrapper">
-<ul class="post-list">
-  {% for post in paginator.posts %}
-  <li>
-    <h2>
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
-      <div class="post-categories">
-      {% if post.categories.size > 0 %}in {% for cat in post.categories %}
-        {% if site.jekyll-archives %}
-        <a href="{{ site.baseurl }}/category/{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
-        {% else %}
-        <a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}
-        {% endif %}
-      {% endfor %}{% endif %}
+<section class="section" id="problems">
+  <div class="wrapper">
+    <h2>Problems I help solve</h2>
+    <p class="section-lede">
+      Most of the engagements I take on start as a symptom somewhere in the stack and a
+      bottleneck somewhere else. The work is tracing the path between them.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Independent architecture review</h3>
+        <p>A second opinion on an existing or proposed architecture, before or after a significant investment.</p>
       </div>
-    </section>
-  </li>
-  {% if forloop.last == false %}
-  <hr>
-  {% endif %}
-  {% endfor %}
-</ul>
+      <div class="card">
+        <h3>Modernize Legacy Technology</h3>
+        <p>Modernize legacy technology and identify practical analytics opportunities acros engineering and operations.</p>
+      </div>
+      <div class="card">
+        <h3>Difficult production problems</h3>
+        <p>A live incident or recurring failure where the real bottleneck has not been identified yet.</p>
+      </div>
+      <div class="card">
+        <h3>Slow or unreliable distributed systems</h3>
+        <p>Throughput is not keeping up, scaling is unpredictable, or behaviour under load is hard to reason about.</p>
+      </div>
+      <div class="card">
+        <h3>Kafka consumer lag and event pipelines</h3>
+        <p>Lag keeps growing, processing throughput has plateaued, or partitioning and topic configuration need a second look.</p>
+      </div>
+      <div class="card">
+        <h3>Cassandra performance and data modelling</h3>
+        <p>Queries degrade at scale and read performance are hurting, or a data model needs reviewing.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
 
-<nav class="pagination" role="navigation">
-	<p>
-    {% if paginator.previous_page %}
-			{% if paginator.page == 2 %}
-			<a class="newer-posts" href="{% if site.baseurl %}{{ site.baseurl }}{% endif %}/">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square fa-stack-2x"></i>
-          <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-        </span>
-      </a>
-			{% else %}
-			<a class="newer-posts" href="{{ site.baseurl }}/page{{paginator.previous_page}}">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-square fa-stack-2x"></i>
-					<i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-			{% endif %}
-		{% else %}
-		<span class="fa-stack fa-lg">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-    </span>
-		{% endif %}
-		<span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-		{% if paginator.next_page %}
-		<a class="newer-posts" href="{{ site.baseurl }}/page{{paginator.next_page}}">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-		{% else %}
-		<span class="fa-stack fa-lg">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-    </span>
-		{% endif %}
-	</p>
-</nav>
+<!-- <section class="section section-alt">
+  <div class="wrapper">
+    <h2>How I work</h2>
+    <p class="section-lede">
+      A recurring class of problems in these systems is a bottleneck that crosses several layers.
+      Application behaviour, concurrency, messaging topology and database behaviour all influence
+      each other, so the investigation follows the whole path rather than the single component
+      reporting the loudest symptom.
+    </p>
 
-</div>
+    <pre class="flow-diagram">Kafka symptom
+      &darr;
+Application behaviour
+      &darr;
+Concurrency
+      &darr;
+Messaging topology
+      &darr;
+Database behaviour
+      &darr;
+Data model
+      &darr;
+Architecture change</pre>
+  </div>
+</section> -->
+
+<section class="section" id="case-studies">
+  <div class="wrapper">
+    <h2>Selected case studies</h2>
+    <p class="section-lede">
+      Sanitized accounts of real engagements, focused on the diagnostic process and the
+      architectural reasoning rather than company specifics or invented metrics.
+    </p>
+
+    <ul class="case-list">
+      <li>
+        <h3><a href="{{ "/case-studies/" | prepend: site.baseurl }}">A commit pipeline that was too slow</a></h3>
+        <p>
+          A single-partitioned Kafka topic, synchronous blocking in the application thread and
+          a cache read/write/delete pattern in Cassandra all contributed to the same problem.
+        </p>
+        <p class="case-tags">Scala &middot; Akka/Pekko &middot; Kafka &middot; Cassandra &middot; Docker</p>
+      </li>
+      <li>
+        <h3><a href="{{ "/case-studies/" | prepend: site.baseurl }}">Kafka lag traced back to Cassandra tombstones</a></h3>
+        <p>
+          Rising consumer lag turned out to be a data lifecycle problem. Expiring rows
+          individually produced enough tombstones to degrade reads feeding the pipeline.
+        </p>
+        <p class="case-tags">Scala &middot; Kafka &middot; Cassandra &middot; Data modelling</p>
+      </li>
+      <li>
+        <h3><a href="{{ "/case-studies/" | prepend: site.baseurl }}">A reporting system that failed at scale</a></h3>
+        <p>
+          Fixing it required changing the data-access model and the user workflow, not
+          optimising the existing queries.
+        </p>
+        <p class="case-tags">Java &middot; MySQL &middot; BIRT &middot; Reporting architecture</p>
+      </li>
+    </ul>
+
+    <p class="section-action">
+      <a class="button button-secondary" href="{{ "/case-studies/" | prepend: site.baseurl }}">Read the case studies</a>
+    </p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <h2>Engagement model</h2>
+    <p class="section-lede">
+      I am currently running a focused review session as a first, low-commitment way to work
+      together. Have a distributed-system performance or scalability problem you cannot pin down?
+    </p>
+
+    <div class="offer">
+      <h3>Distributed Systems Architecture &amp; Technical Review</h3>
+      <ul class="offer-list">
+        <li>60&ndash;90 minute technical session</li>
+        <li>Review of the architecture, the problem and available evidence</li>
+        <li>Discussion of relevant logs, code and design</li>
+        <li>Identification of the likely bottleneck and its contributing factors</li>
+        <li>Written findings</li>
+        <li>Prioritized recommendations and follow-up Q&amp;A</li>
+      </ul>
+      <p class="offer-price">Initial rate: &#8377;5,000</p>
+      <p class="offer-note">
+        This is only a diagnosis and review engagement.
+      </p>
+      <p class="section-action">
+        <a class="button button-primary" href="{{ "/consulting/" | prepend: site.baseurl }}">Consulting details</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="background">
+  <div class="wrapper">
+    <h2>Background</h2>
+
+    <div class="background-grid">
+      <div class="background-item">
+        <h3>18 years of production systems</h3>
+        <p>
+          Senior and principal engineering across telecom, analytics, machine learning, big data
+          and enterprise platforms, mostly as an individual contributor.
+        </p>
+      </div>
+      <div class="background-item">
+        <h3>Event-driven platforms at scale</h3>
+        <p>
+          Designed and led an event-driven ETL platform with high-throughput aggregation
+          pipelines, and distributed event-streaming engines modelling complex Layer-3 network
+          topologies. Scala, Akka/Pekko, Kafka, Cassandra, REST APIs, Docker, Kubernetes.
+        </p>
+      </div>
+      <div class="background-item">
+        <h3>Data platforms and ML</h3>
+        <p>
+          Moved a text analytics platform from Excel and small local datasets onto Spark,
+          PySpark, Hadoop and Scala. Earlier work across Hadoop, Hive, Spark, Cassandra and
+          telecom analytics at Nokia and Alcatel-Lucent.
+        </p>
+      </div>
+      <div class="background-item">
+        <h3>Working with engineering teams</h3>
+        <p>
+          Architecture and design reviews, mentoring, technical roadmaps, production incidents,
+          knowledge transfer, and presenting designs to senior leadership. Also delivered Spark
+          MLlib training for an external company.
+        </p>
+      </div>
+      <div class="background-item">
+        <h3>Currently exploring</h3>
+        <p>
+          Applying distributed-systems and data-platform principles to AI and LLM workloads.
+          Current work is hands-on rather than deep production LLM experience.
+        </p>
+      </div>
+      <div class="background-item">
+        <h3>Stack Overflow</h3>
+        <p>
+          Long-standing technical contributions on Python, Spark, PySpark, Spark SQL, DataFrames
+          and Django.
+        </p>
+        <p>
+          <a href="https://stackoverflow.com/users/6065591/ayush-vatsyayan">stackoverflow.com/users/6065591/ayush-vatsyayan</a>
+        </p>
+      </div>
+    </div>
+
+    <p class="section-action">
+      <a class="button button-secondary" href="{{ "/about/" | prepend: site.baseurl }}">About me</a>
+    </p>
+  </div>
+</section>
+
+<section class="section section-alt" id="contact">
+  <div class="wrapper">
+    <h2>Have a difficult distributed-systems problem?</h2>
+    <p class="section-lede">
+      Let&rsquo;s discuss the architecture, the bottleneck or the scalability challenge.
+      If you can describe the symptom and the shape of the system, that is usually enough to
+      start.
+    </p>
+    <p class="hero-actions">
+      <a class="button button-primary" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <a class="button button-secondary" href="{{ "/contact/" | prepend: site.baseurl }}">Contact details</a>
+      <a class="button button-secondary" href="https://www.linkedin.com/in/ayushvatsyayan">LinkedIn</a>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="writing">
+  <div class="wrapper">
+    <h2>Technical writing</h2>
+    <p class="section-lede">
+      Notes on Cassandra, Spark, Kafka and distributed systems, mostly written after working
+      through the problem.
+    </p>
+
+    <ul class="post-list">
+      {% for post in site.posts limit: 4 %}
+      <li>
+        <h3><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+        <section class="post-excerpt">
+          <p>{{ post.content | strip_html | truncatewords: 35 }}</p>
+        </section>
+        <section class="post-meta">
+          <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
+          <div class="post-categories">
+            {% if post.categories.size > 0 %}in {% for cat in post.categories %}<a href="{{ site.baseurl }}/posts/#{{ cat }}">{{ cat | capitalize }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}{% endif %}
+          </div>
+        </section>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <p class="section-action">
+      <a class="button button-secondary" href="{{ "/posts/" | prepend: site.baseurl }}">All writing</a>
+    </p>
+  </div>
+</section>
+
 </div>

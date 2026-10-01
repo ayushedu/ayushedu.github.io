@@ -96,6 +96,265 @@ pre code.hljs {
 	}
 }
 
+// Muted text on the home page. The theme greys ($gray, $medium-gray) fall below
+// WCAG AA 4.5:1 as body text, so darken them enough to pass on both white and
+// the alternating section background.
+$muted-text: darken($gray, 15%);
+$muted-meta: darken($medium-gray, 18%);
+
+/*
+*	Home page
+*/
+.home {
+	.hero {
+		padding: 3.5em 1em 3em 1em;
+		background-color: $highlight-color;
+		color: $white;
+		text-align: center;
+		.wrapper {
+			@include outer-container;
+		}
+		.hero-identity {
+			font-size: modular-scale(0);
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			opacity: 0.9;
+			margin: 0 0 0.75em 0;
+		}
+		.hero-name {
+			font-size: modular-scale(5);
+			margin: 0;
+			@include media($tablet) {
+				font-size: modular-scale(6);
+			}
+		}
+		.hero-specialization {
+			font-size: modular-scale(1);
+			margin: 0.5em 0 0 0;
+			color: #fff
+		}
+		.hero-statement {
+			max-width: 34em;
+			margin: 1.25em auto 0 auto;
+			font-size: modular-scale(1);
+			color: #94A3B8
+		}
+		.hero-actions {
+			margin: 2em 0 0 0;
+			a.button {
+				margin: 0.35em;
+			}
+		}
+	}
+	.section {
+		padding: 3em 1em;
+		.wrapper {
+			@include outer-container;
+		}
+		&.section-alt {
+			background-color: lighten($light-gray, 8%);
+		}
+		h2 {
+			margin-top: 0;
+		}
+	}
+	.section-lede {
+		max-width: 40em;
+		color: $muted-text;
+	}
+	.section-action {
+		margin: 2em 0 0 0;
+	}
+	.card-grid {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 2em 0 0 0;
+	}
+	.card {
+		flex: 0 0 100%;
+		max-width: 100%;
+		margin: 0 0 $small-spacing 0;
+		padding: 1em;
+		background-color: $white;
+		border: $base-border;
+		border-radius: $base-border-radius;
+		@include media($mobile) {
+			flex-basis: calc(50% - #{$small-spacing});
+			max-width: calc(50% - #{$small-spacing});
+			margin-right: $small-spacing;
+		}
+		@include media($tablet) {
+			flex-basis: calc(33.333% - #{$small-spacing});
+			max-width: calc(33.333% - #{$small-spacing});
+		}
+		h3 {
+			margin-top: 0;
+			font-size: modular-scale(0);
+		}
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.flow-diagram {
+		display: inline-block;
+		text-align: left;
+		background-color: $white;
+		border: $base-border;
+		border-radius: $base-border-radius;
+		padding: 1.25em 1.5em;
+		font-size: 0.9em;
+		line-height: 1.6;
+		overflow-x: auto;
+	}
+	.case-list {
+		@extend %default-ul;
+		margin-top: 2em;
+		li {
+			padding-bottom: $small-spacing;
+			margin-bottom: $small-spacing;
+			border-bottom: $base-border;
+			&:last-child {
+				border-bottom: none;
+			}
+			h3 {
+				margin: 0 0 0.35em 0;
+				font-size: modular-scale(1);
+			}
+			p {
+				margin: 0;
+				color: $muted-text;
+			}
+			.case-tags {
+				font-size: 0.9em;
+				letter-spacing: 0.02em;
+			}
+		}
+	}
+	.offer {
+		margin-top: 2em;
+		padding: 1.75em;
+		background-color: $white;
+		border: $base-border;
+		border-radius: $base-border-radius;
+		h3 {
+			margin-top: 0;
+		}
+		.offer-list {
+			margin-bottom: 1em;
+		}
+		.offer-price {
+			font-size: modular-scale(2);
+			font-weight: 700;
+			margin-bottom: 0.25em;
+		}
+		.offer-note {
+			color: $muted-text;
+			font-size: 0.95em;
+		}
+		.section-action {
+			margin-top: 1.5em;
+		}
+	}
+	.background-grid {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 2em 0 0 0;
+	}
+	.background-item {
+		flex: 0 0 100%;
+		max-width: 100%;
+		margin: 0 0 $small-spacing 0;
+		@include media($tablet) {
+			flex-basis: calc(50% - #{$small-spacing});
+			max-width: calc(50% - #{$small-spacing});
+			margin-right: $small-spacing;
+		}
+		h3 {
+			font-size: modular-scale(1);
+			margin: 0 0 0.35em 0;
+		}
+		p {
+			color: $muted-text;
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+		}
+	}
+	.post-list {
+		padding-top: 1em !important;
+		@extend %default-ul;
+		li {
+			margin-bottom: $small-spacing;
+			padding-bottom: $small-spacing;
+			border-bottom: $base-border;
+			&:last-child {
+				border-bottom: none;
+			}
+			h3 {
+				margin: 0;
+				font-size: modular-scale(1);
+			}
+		}
+	}
+	.page-content .home .post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		color: $muted-meta;
+		font-size: 0.9em;
+		.post-date,
+		.post-categories {
+			flex: 0 0 100%;
+			max-width: 100%;
+			text-align: left;
+		}
+		.post-categories {
+			@include media($mobile) {
+				flex: 0 0 50%;
+				max-width: 50%;
+				text-align: right;
+			}
+		}
+	}
+	a.button {
+		display: inline-block;
+		padding: 0.7em 1.25em;
+		margin: 0.25em;
+		border-radius: $base-border-radius;
+		font-weight: 600;
+		text-decoration: none;
+		border: 1px solid transparent;
+		&.button-primary {
+			background-color: $action-color;
+			color: $white;
+			&:active,
+			&:focus,
+			&:hover {
+				background-color: darken($action-color, 15%);
+				color: $white;
+			}
+		}
+		&.button-secondary {
+			background-color: transparent;
+			border-color: currentColor;
+			color: inherit;
+			&:active,
+			&:focus,
+			&:hover {
+				background-color: rgba($dark-gray, 0.06);
+				color: inherit;
+			}
+		}
+	}
+	.hero a.button-secondary {
+		border-color: rgba($white, 0.6);
+		&:active,
+		&:focus,
+		&:hover {
+			background-color: rgba($white, 0.12);
+		}
+	}
+}
+
 /*
 *	Header
 */
