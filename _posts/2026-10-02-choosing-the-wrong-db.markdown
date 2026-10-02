@@ -7,15 +7,11 @@ categories: system-design
 tags:	    systemDesign
 ---
 
-When designing a simple feature or application many people quickly jump from fucntional requirements directly to designing the APIs directly. 
+While designing a simple feature or application, many people jump quickly from functional requirements directly to implemenation. While some may consider the non functional requirements, but very few will consider non-functional requirements but that too only limited. 
 
-Some may consider the non functional requirement, but that will only be limited to write throughput. 
+I've seen this happen in large organizations: teams are under pressure to deliver a feature quickly, so the design discussion is kept brief—or happens entirely verbally. There is no design document, no detailed capacity analysis, and no systematic discussion of how the system will behave as the customer, data, and retention period grow. And if they do consider non-functional they will limit themselves to write throughput.
 
-I've seen this happen in large organizations: teams are under pressure to deliver a feature quickly, so the design discussion is kept brief—or happens entirely verbally. There is no design document, no detailed capacity analysis, and no systematic discussion of how the system will behave as the customer, data, and retention period grow.
-
-The feature gets implemented, the tests pass, and everything appears to work.
-
-But the problem is that a **system that receives a relatively modest number of writes per second can still become an enormous system if those writes are retained for years.** 
+Once the feature gets implemented, the tests pass, and everything appears to work.But the problem is that a **system that receives a relatively modest number of writes per second can still become an enormous system if those writes are retained for years.** 
 
 And that's a design constraint we often overlook. When designing a database-backed application, one of the first questions we usually ask is: 
 
@@ -26,18 +22,13 @@ That's an important question. But it's not the only one.
 ---
 ## The problem doesn't appear on day one
 
-Initially, everyone is happy.
+Initially, everyone is happy. 
 The feature works as expected. The customer creates data, retrieves it, and everything looks fine.
 
-Then time passes, the customer grows and the amount of data grows.
-
-And eventually, the database starts consuming significantly more disk space than anyone anticipated.
-
+But then time passes, the customer grows and along with grows the amount of data. Eventually, the database starts claiming significantly more disk space than anyone anticipated. 
 At some point, the customer may be forced to make an uncomfortable choice: delete valuable historical data or reduce the retention period.
 
-Imagine the customer originally expected to retain a year's worth of data, but the system can realistically handle only a month's worth without running into storage problems.
-
-At that point, the question isn't simply:
+Imagine the customer originally expected to retain a year's worth of data, but the system can realistically handle only a month's worth without running into storage problems.At that point, the question isn't simply:
 
 “Why did the database get so large?”
 
@@ -54,11 +45,7 @@ Consider the requirement:
 
     “The customer needs access to historical data.”
 
-That sounds functional.
-
-But we need to clarify it.
-
-How much historical data?
+That sounds functional. But we need to clarify it. How much historical data?
 
     Seven days?
 
@@ -70,15 +57,13 @@ How much historical data?
 
     Ten years?
 
-If the customer expects one year of historical data, then one year of retention is part of the functional requirement.
-
-Now comes the non-functional question:
+If the customer expects one year of historical data, then one year of retention is part of the functional requirement. Now comes the non-functional question:
 
     How much storage will we need to support that retention period at the expected scale?
 
-That's a capacity and scalability requirement.
+That's a capacity and scalability requirement. The two questions cannot really be separated. 
 
-The two questions cannot really be separated. Consider the below example:
+Consider the below example:
 
 ## A URL shortener is a perfect example
 Imagine we're designing a URL-shortening service. Our requirements are:
@@ -153,7 +138,7 @@ And that's exactly what we're seeing here.
 
 ## Let's estimate the storage
 
-Suppose each URL record requires roughly 100 bytes, most people will consider this as the final data size. But what they are missing is the additional columns required to persist this info in DB along with metadata, row overhead, indexes, and other database overhead. This 100kb could change to 400 or 500kb. For e.g.
+Suppose each URL record requires roughly 150 bytes, most people will consider this as the final data size. But what they are missing is the additional columns required to persist this info in DB along with metadata, row overhead, indexes, and other database overhead. This 150kb could change to 300 or 400kb. For e.g.
 
 For e.g. we will need below minimal schema:
 
@@ -168,8 +153,7 @@ For e.g. we will need below minimal schema:
 | **Total**|| **260-390** |
 {:.table .table-striped}
 
-This isn't an exact number—it depends heavily on the database and schema—but it's useful for capacity planning.
-
+Do note that this isn't an exact number—it depends heavily on the database and schema—but it's useful for capacity planning.
 Then:
 
 ```

@@ -295,53 +295,28 @@ $muted-meta: darken($medium-gray, 18%);
 				font-size: modular-scale(1);
 			}
 		}
-	}
-	.page-content .home .post-meta {
-		display: flex;
-		flex-wrap: wrap;
-		color: $muted-meta;
-		font-size: 0.9em;
-		.post-date,
-		.post-categories {
-			flex: 0 0 100%;
-			max-width: 100%;
-			text-align: left;
-		}
-		.post-categories {
-			@include media($mobile) {
-				flex: 0 0 50%;
-				max-width: 50%;
-				text-align: right;
+		// Overrides the base `.page-content .post-meta` floats, which use
+		// span-columns and so overflow their container.
+		.post-meta {
+			display: flex;
+			flex-wrap: wrap;
+			color: $muted-meta;
+			font-size: 0.9em;
+			.post-date,
+			.post-categories {
+				float: none;
+				flex: 0 0 100%;
+				max-width: 100%;
+				width: auto;
+				margin-right: 0;
+				text-align: left;
 			}
-		}
-	}
-	a.button {
-		display: inline-block;
-		padding: 0.7em 1.25em;
-		margin: 0.25em;
-		border-radius: $base-border-radius;
-		font-weight: 600;
-		text-decoration: none;
-		border: 1px solid transparent;
-		&.button-primary {
-			background-color: $action-color;
-			color: $white;
-			&:active,
-			&:focus,
-			&:hover {
-				background-color: darken($action-color, 15%);
-				color: $white;
-			}
-		}
-		&.button-secondary {
-			background-color: transparent;
-			border-color: currentColor;
-			color: inherit;
-			&:active,
-			&:focus,
-			&:hover {
-				background-color: rgba($dark-gray, 0.06);
-				color: inherit;
+			.post-categories {
+				@include media($mobile) {
+					flex: 0 0 50%;
+					max-width: 50%;
+					text-align: right;
+				}
 			}
 		}
 	}
@@ -351,6 +326,40 @@ $muted-meta: darken($medium-gray, 18%);
 		&:focus,
 		&:hover {
 			background-color: rgba($white, 0.12);
+		}
+	}
+}
+
+/*
+*	Buttons
+*/
+a.button {
+	display: inline-block;
+	padding: 0.7em 1.25em;
+	margin: 0.25em;
+	border-radius: $base-border-radius;
+	font-weight: 600;
+	text-decoration: none;
+	border: 1px solid transparent;
+	&.button-primary {
+		background-color: $action-color;
+		color: $white;
+		&:active,
+		&:focus,
+		&:hover {
+			background-color: darken($action-color, 15%);
+			color: $white;
+		}
+	}
+	&.button-secondary {
+		background-color: transparent;
+		border-color: currentColor;
+		color: inherit;
+		&:active,
+		&:focus,
+		&:hover {
+			background-color: rgba($dark-gray, 0.06);
+			color: inherit;
 		}
 	}
 }
@@ -594,7 +603,46 @@ $muted-meta: darken($medium-gray, 18%);
 				font-size: 0.9em;
 			}
 			.post-date {
-				color: $medium-gray;
+				color: $muted-meta;
+			}
+			&.chronological {
+				li {
+					display: flex;
+					flex-wrap: wrap;
+					align-items: baseline;
+					padding: 0.6em 0;
+					border-bottom: $base-border;
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+				.post-date {
+					flex: 0 0 100%;
+					max-width: 100%;
+					font-size: 0.85em;
+					letter-spacing: 0.02em;
+					font-variant-numeric: tabular-nums;
+				}
+				.post-entry {
+					flex: 1 1 auto;
+					min-width: 0;
+				}
+				.post-categories {
+					color: $muted-meta;
+					font-size: 0.85em;
+					.sep {
+						margin: 0 0.35em;
+					}
+				}
+				@include media($mobile) {
+					.post-date {
+						flex: 0 0 7.5em;
+						max-width: 7.5em;
+					}
+					.post-entry {
+						flex: 1 1 auto;
+					}
+				}
 			}
 		}
 		.profile {

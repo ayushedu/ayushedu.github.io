@@ -2,26 +2,25 @@
 layout: page
 title: "Posts"
 permalink: /posts/
+description: "All technical writing, newest first. Notes on distributed systems, Kafka, Cassandra, Spark, Scala and Python."
 ---
 
-{% for category in site.categories %}
-  {% capture cat %}{{ category | first }}{% endcapture %}
-  <h2 id="{{cat}}">{{ cat | capitalize }}</h2>
-  {% for desc in site.descriptions %}
-    {% if desc.cat == cat %}
-      <p class="desc"><em>{{ desc.desc }}</em></p>
-    {% endif %}
-  {% endfor %}
-  <ul class="posts-list">
-  {% for post in site.categories[cat] %}
-    <li>
+{% assign posts = site.posts | sort: "date" | reverse %}
+
+<ul class="posts-list chronological">
+  {% for post in posts %}
+  <li>
+    <div class="post-date">{{ post.date | date: "%Y-%m-%d" }}</div>
+    <div class="post-entry">
       <strong>
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </strong>
-      <span class="post-date">- {{ post.date | date_to_long_string }}</span>
-    </li>
+      {% if post.categories.size > 0 %}
+      <div class="post-categories">
+        {% for cat in post.categories %}<span>{{ cat | capitalize }}</span>{% unless forloop.last == true %}<span class="sep">,</span>{% endunless %}{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </li>
   {% endfor %}
-  </ul>
-  {% if forloop.last == false %}<hr>{% endif %}
-{% endfor %}
-<br>
+</ul>
