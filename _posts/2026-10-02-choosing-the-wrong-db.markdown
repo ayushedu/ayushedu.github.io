@@ -140,8 +140,6 @@ And that's exactly what we're seeing here.
 
 Suppose each URL record requires roughly 150 bytes, most people will consider this as the final data size. But what they are missing is the additional columns required to persist this info in DB along with metadata, row overhead, indexes, and other database overhead. This 150kb could change to 300 or 400kb. For e.g.
 
-For e.g. we will need below minimal schema:
-
 |Name|Type|Size (bytes)|
 | :--- | :---: | ---: |
 |user_id|UUID|16|
@@ -153,8 +151,7 @@ For e.g. we will need below minimal schema:
 | **Total**|| **260-390** |
 {:.table .table-striped}
 
-Do note that this isn't an exact number—it depends heavily on the database and schema—but it's useful for capacity planning.
-Then:
+Do note that this isn't an exact number—it depends heavily on the database and schema. Now the total storage requirement is:
 
 ```
 365 billion × 300 bytes
@@ -163,7 +160,7 @@ Then:
 
 That's before considering replication.
 
-With three copies:
+With three copies, it becomes:
 
 ```
 109.5 TB × 3
@@ -214,10 +211,10 @@ We haven't asked:
 - How large is each record?
 - How large will indexes become?
 - How much replication do we need?
-- How much storage will we need in five years?
+- How much storage will we need for data-retention years?
 - How will backups work?
 - How long will recovery take?
 - Can we scale storage independently of compute?
-- What happens when the database reaches hundreds of billions of records?
+- What happens when the database reaches hundreds of billions of records i.e. what is the deletion strategy for expired records?
 
 Those questions can completely change the architecture.
